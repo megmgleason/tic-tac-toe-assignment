@@ -143,6 +143,7 @@ class Board(object):
         for l in self.all_lines:
             line_winner = _line_winner(l)
             if line_winner is not None:
+
                 return line_winner
 
         return None
