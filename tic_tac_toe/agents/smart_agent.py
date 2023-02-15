@@ -2,6 +2,8 @@ from .base_agent import Agent, Move, valid_moves
 from ..player import PLAYER_NAMES, other_player, Player
 from tic_tac_toe.board import Board, CellState
 from copy import copy
+import math
+import random
 
 
 class SmartAgent(Agent):
@@ -133,28 +135,33 @@ class SmartAgent(Agent):
             ##do number of repeats based on length, and track the empty cells
             ##each repeat you make the move in that corresponding empty cell and calculate the value, setting it back to
             ##empty each time while still stepping thru the empty_cell array (is a list of tuples, is x,y
-
-            for i in range (board.size):
-                for j in range (board.size):
-                    if board.cell(i, j) == CellState.EMPTY:
+            if len(board.empty_cells) == 9:
+                if len(board.empty_cells) == 9:
+                    best_move[0] = random.randint(0, 2)
+                    best_move[1] = random.randint(0, 2)
+                    move = Move(self._player, best_move[0], best_move[1])
+            else:
+                for i in range (board.size):
+                    for j in range (board.size):
+                        if board.cell(i, j) == CellState.EMPTY:
             # for i in range (0, num_repeats):
 
                 ##alternative, what if i adjusted minimax to take in param so it evaluates the board FOR PUTTING X OR O ONLY IN THIS POSITION
                 ##make the move here, then call minimax on that!
 
-                        move = Move(self._player, i, j)
-                        board.set_cell(move.player, move.row, move.col)
-                        depth = len(board.empty_cells)
-                        score = self.minimax(board, depth, False)
-                        board.set_cell(CellState.EMPTY, move.row, move.col)
+                            move = Move(self._player, i, j)
+                            board.set_cell(move.player, move.row, move.col)
+                            depth = len(board.empty_cells)
+                            score = self.minimax(board, depth, False)
+                            board.set_cell(CellState.EMPTY, move.row, move.col)
                     #current_move = [empty_cells[i][0], empty_cells[i][1]]
                     #board.set_cell(self._player, current_move[0], current_move[1])
                     #move_val = self.minimax(board, len(board.empty_cells), not self.isMaximizingPlayer)
                     #board.set_cell(CellState.EMPTY, move[0], move[1])
-                        if score > best_score:
-                            best_score = score
-                            best_move[0] = i
-                            best_move[1] = j
+                            if score > best_score:
+                                best_score = score
+                                best_move[0] = i
+                                best_move[1] = j
                         #board.set_cell(self._player, current_move[0], current_move[1])
                         # print("new best score: {}".format(best_score))
                         # print("new best move: {}".format(best_move))

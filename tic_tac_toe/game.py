@@ -10,8 +10,10 @@ class Game(object):
     num_draws = 0
     num_o_wins = 0
 
-    def __init__(self, player_x, player_o, size=3, num_to_win=None,
+    def __init__(self, player_x, player_o, size, num_to_win,
                  starting_board=None):
+        self.size = size
+        self.num_to_win = num_to_win
         self._player_x = player_x
         self._player_o = player_o
 
