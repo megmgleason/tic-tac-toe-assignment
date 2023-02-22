@@ -3,12 +3,14 @@ from tic_tac_toe.agents.console_input_agent import ConsoleInputAgent
 from tic_tac_toe.agents.random_agent import RandomAgent
 from tic_tac_toe.agents.smart_agent import SmartAgent
 from tic_tac_toe.agents.smart_agent_pruning import SmartAgentPruning
+from tic_tac_toe.agents.suboptimal_agent import SuboptimalAgent
 
 AGENTS = [
     ("Human", ConsoleInputAgent),
     ("Random Agent", RandomAgent),
     ("Smart Agent", SmartAgent),
-    ("Smart Agent w/ Alpha Beta Pruning", SmartAgentPruning)
+    ("Smart Agent w/ Alpha Beta Pruning", SmartAgentPruning),
+    ("Suboptimal Agent", SuboptimalAgent)
 ]
 
 
