@@ -5,6 +5,7 @@ from tic_tac_toe.agents.smart_agent import SmartAgent
 from tic_tac_toe.agents.smart_agent_pruning import SmartAgentPruning
 from tic_tac_toe.agents.suboptimal_agent import SuboptimalAgent
 
+
 AGENTS = [
     ("Human", ConsoleInputAgent),
     ("Random Agent", RandomAgent),
@@ -37,6 +38,10 @@ def _pick_agent(player):
 
 
 def main():
+    num_plays = 0
+    x_wins = 0
+    o_wins = 0
+    ties = 0
     print("Choosing player X...")
     player_x = _pick_agent(Player.X)
 
@@ -47,13 +52,23 @@ def main():
     ##go back and put this in methods with error handling pls
     print("")
     board_size = int(input("Choose a size for the board... "))
+
     num_to_win = int(input("Choose a winning length... "))
+
+
     print("")
 
     while play == "y":
         game = Game(player_x, player_o, board_size, num_to_win )
         game.play()
         play = input("Play again? y/[n]: ")
+    # while num_plays < 100:
+    #     num_plays = num_plays + 1
+    #     game = Game(player_x, player_o, board_size, num_to_win)
+    #     game.play()
+
+
+
 
 
 if __name__ == "__main__":
